@@ -6,7 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 //import path from 'path';
 //import HtmlWebpackPlugin from 'html-webpack-plugin';
 module.exports = {
-  entry: path.join(__dirname, 'src', 'index.js'),
+  entry: ["babel-polyfill", "./src/index.js"], // previously path.join(__dirname, 'src', 'index.js'), changed to fix 
+                                               // "Uncaught ReferenceError: regeneratorRuntime is not defined" error
   output: { path: path.join(__dirname, 'dist'), filename: 'index.bundle.js', publicPath: '/' },
   mode: process.env.NODE_ENV || 'development',
   resolve: {

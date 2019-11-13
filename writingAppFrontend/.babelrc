@@ -6,6 +6,7 @@
       {
         "loose": true
       }
-    ]
+    ],
+    "transform-regenerator" // Added to fix "Uncaught ReferenceError: regeneratorRuntime is not defined" error
   ]
 }
