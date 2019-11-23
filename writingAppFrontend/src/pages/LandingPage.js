@@ -1,5 +1,6 @@
 import React from "react";
-import SignupForm from '../components/SigninForm';
+import SigninForm from '../components/SigninForm';
+import SignupForm from '../components/SignupForm';
 
 export default class LandingPage extends React.Component {
   constructor(props) {
@@ -22,8 +23,8 @@ export default class LandingPage extends React.Component {
         <h1>The Landing Page</h1>
         <a href="/writer">test</a>
 
-        <SignupForm setUserInfo={this.setUserInfo}/>
-        <h1>Hello {this.state.name}, your email is {this.state.email}</h1>
+        <SigninForm setUserInfo={this.setUserInfo}/>
+        <h1>Hello {this.state.name}, your email is {this.state.email}. Thanks for creating an account.</h1>
       </div>
     );
   }

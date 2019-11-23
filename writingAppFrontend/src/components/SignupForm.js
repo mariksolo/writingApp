@@ -3,7 +3,7 @@ import React from "react";
 import { useFormik } from "formik";
 import { TextField, Button } from "@material-ui/core";
 async function postData(values) {
-  const url = "http://localhost:8080/users/login";
+  const url = "http://localhost:8080/users/";
 
   const response = await fetch(url, {
     method: "POST",
@@ -18,16 +18,17 @@ async function postData(values) {
   return rep;
 }
 
-const SigninForm = (props) => {
+const SignupForm = props => {
   const formik = useFormik({
     initialValues: {
       email: "",
+      name: "",
       password: "",
-      props: props,
+      props: props
     },
     onSubmit: postData
   });
-  
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="email">Email Address</label>
@@ -40,7 +41,16 @@ const SigninForm = (props) => {
         onChange={formik.handleChange}
         value={formik.values.email}
       />
-      
+
+      <TextField
+        id="name"
+        type="name"
+        label="Name"
+        margin="normal"
+        onChange={formik.handleChange}
+        value={formik.values.name}
+      />
+
       <TextField
         id="password"
         type="password"
@@ -56,4 +66,4 @@ const SigninForm = (props) => {
   );
 };
 
-export default SigninForm;
+export default SignupForm;
