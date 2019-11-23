@@ -3,36 +3,32 @@ import React from "react";
 import { useFormik } from "formik";
 import { TextField, Button } from "@material-ui/core";
 async function postData(values) {
-  const url = 'http://localhost:8080/users/login';
-  
-  // Default options are marked with *
+  const url = "http://localhost:8080/users/login";
+
   const response = await fetch(url, {
-    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(values),
+    body: JSON.stringify(values)
   });
   const rep = await response.json();
-  alert(JSON.stringify(rep));
-  return rep; // parses JSON response into native JavaScript objects
+
+  values.props.setUserInfo(rep.user.name, rep.user.email);
+  return rep;
 }
 
-async function test() {
-  console.log("test")
-}
-
-const SignupForm = () => {
-  // Pass the useFormik() hook initial form values and a submit function that will
-  // be called when the form is submitted
+const SigninForm = (props) => {
   const formik = useFormik({
     initialValues: {
       email: "",
-      name: "",
-      password: ""
+    //   name: "",
+      password: "",
+      props: props,
     },
     onSubmit: postData
   });
+  
   return (
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="email">Email Address</label>
@@ -45,14 +41,7 @@ const SignupForm = () => {
         onChange={formik.handleChange}
         value={formik.values.email}
       />
-      <TextField
-        id="name"
-        type="name"
-        label="Name"
-        margin="normal"
-        onChange={formik.handleChange}
-        value={formik.values.name}
-      />
+      
       <TextField
         id="password"
         type="password"
@@ -68,4 +57,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default SigninForm;
